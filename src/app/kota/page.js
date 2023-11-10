@@ -1,66 +1,65 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import supabase from '../supabase';
 
 import './page.css';
+import Link from 'next/link';
 
-export default function Petugas() {
-  const [listPetugas, setListPetugas] = useState();
+export default function Kota() {
+  const [listKota, setListKota] = useState();
 
-  async function getDataPetugas() {
-    let { data: petugas, error } = await supabase.from('petugas').select('*');
+  async function getDataKota() {
+    let { data: kota, error } = await supabase.from('kota').select('*');
 
-    if (error === null) setListPetugas(petugas);
+    if (error === null) setListKota(kota);
   }
 
   async function onDelete() {
     const isConfirm = confirm('Are you sure you want to delete this data?');
 
     if (isConfirm) {
-      // get id from binding function onDelete
+      // get id from biinding function onDelete
       const id = this;
-      const { data, error } = await supabase
-        .from('petugas')
-        .delete()
-        .eq('id', id);
+      const { data, error } = await supabase.from('kota').delete().eq('id', id);
 
       // update the data after delete
-      getDataPetugas();
+      getDataKota();
     }
   }
 
   useEffect(() => {
-    getDataPetugas();
+    getDataKota();
   }, []);
 
   return (
     <main className='main-container'>
       <Link href='/'>Kembali ke halaman sebelumnya &larr;</Link>
-      <h1 className='header'>Halaman Petugas with supabase!</h1>
+      <h1 className='header'>Halaman Kota with supabase!</h1>
       <div className='body'>
-        <Link href='/petugas/insert' className='btn btn-primary'>
+        <Link href='/kota/insert' className='btn btn-primary'>
           Insert Data
         </Link>
         <table>
           <thead>
             <tr>
               <th>Id</th>
-              <th>Nama Petugas</th>
+              <th>Nama Kota</th>
+              <th>Wilayah</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {listPetugas &&
-              listPetugas.map((data) => (
+            {listKota &&
+              listKota.map((data) => (
                 <tr key={data.id}>
                   <td>{data.id}</td>
-                  <td>{data.name}</td>
+                  <td>{data.nama}</td>
+                  <td>{data.tipe}</td>
                   <td>
                     <Link
                       href={{
-                        pathname: '/petugas/update',
+                        pathname: '/kota/update',
                         query: { id: data.id },
                       }}
                     >

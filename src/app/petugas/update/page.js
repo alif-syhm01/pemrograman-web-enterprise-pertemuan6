@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import '../page.css';
+
 export default function Update() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -38,23 +40,26 @@ export default function Update() {
   }, []);
 
   return (
-    <div>
+    <main className='main-container'>
       <Link href='/petugas'>Kembali ke halaman sebelumnya &larr;</Link>
-      <br />
-      <br />
-      <h3>Update</h3>
-      {console.log(name)}
-      <form onSubmit={onSubmit}>
-        <input
-          type='text'
-          name='name'
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
-        />
-        <br />
-        <button type='submit'>Save</button>
+      <h1 className='header'>Halaman Petugas - Update Data</h1>
+
+      <form onSubmit={onSubmit} className='form-data'>
+        <div className='form-input'>
+          <label htmlFor='name'>Nama</label>
+          <input
+            type='text'
+            name='name'
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder='masukkan nama...'
+            required
+          />
+        </div>
+        <button type='submit' className='btn btn-success'>
+          Update
+        </button>
       </form>
-    </div>
+    </main>
   );
 }

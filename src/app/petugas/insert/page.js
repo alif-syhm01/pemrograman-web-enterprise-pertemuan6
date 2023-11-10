@@ -1,8 +1,11 @@
 'use client';
 
 import supabase from '@/app/supabase';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+import '../page.css';
 
 export default function Insert() {
   const router = useRouter();
@@ -19,22 +22,28 @@ export default function Insert() {
   }
 
   return (
-    <div>
-      <h3>Insert</h3>
+    <main className='main-container'>
+      <Link href='/petugas'>Kembali ke halaman sebelumnya &larr;</Link>
+      <h1 className='header'>Halaman Petugas - Insert Data</h1>
 
       {/* display if listData not null */}
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='form-data'>
         {/* onchange: Isi state nama sesuai input */}
-        <input
-          type='text'
-          name='name'
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
-        />
-        <br />
-        <button type='submit'>Save</button>
+        <div className='form-input'>
+          <label htmlFor='name'>Nama</label>
+          <input
+            type='text'
+            name='name'
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder='masukkan nama...'
+            required
+          />
+        </div>
+        <button type='submit' className='btn btn-success'>
+          Save
+        </button>
       </form>
-    </div>
+    </main>
   );
 }
