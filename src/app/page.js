@@ -25,6 +25,7 @@ export default function Page() {
             width: '100vh',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            rowGap: '2rem',
           }}
         >
           <Link
@@ -56,6 +57,16 @@ export default function Page() {
             }}
           >
             Kota
+          </Link>
+          <Link
+            href='/buku/list'
+            style={{
+              textAlign: 'center',
+              color: '#04aa6d',
+              fontWeight: 'bold',
+            }}
+          >
+            Buku
           </Link>
         </div>
       </section>
