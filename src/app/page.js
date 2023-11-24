@@ -59,6 +59,16 @@ export default function Page() {
             Kota
           </Link>
           <Link
+            href='/kategori_buku/list'
+            style={{
+              textAlign: 'center',
+              color: '#04aa6d',
+              fontWeight: 'bold',
+            }}
+          >
+            Kategori Buku
+          </Link>
+          <Link
             href='/buku/list'
             style={{
               textAlign: 'center',
