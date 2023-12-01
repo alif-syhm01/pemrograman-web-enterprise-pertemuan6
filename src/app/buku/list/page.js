@@ -1,8 +1,13 @@
 'use client';
 
 import supabase from '@/app/supabase';
-import { Button, Popconfirm, Space, Table, notification } from 'antd';
-import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { Flex, Button, Popconfirm, Space, Table, notification } from 'antd';
+import {
+  DeleteOutlined,
+  EditOutlined,
+  PlusOutlined,
+  PieChartOutlined,
+} from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -82,13 +87,23 @@ export default function ManyList() {
   return (
     <div>
       <h3>Halaman Buku with supabase!</h3>
-      <Button
-        type='primary'
-        icon={<PlusOutlined />}
-        onClick={() => router.push('/buku/insert')}
-      >
-        Insert
-      </Button>
+      <Flex gap={'small'}>
+        <Button
+          type='primary'
+          icon={<PlusOutlined />}
+          onClick={() => router.push('/buku/insert')}
+        >
+          Insert
+        </Button>
+        <Button
+          type='primary'
+          icon={<PieChartOutlined />}
+          onClick={() => router.push('/buku/view')}
+          danger
+        >
+          Chart Buku
+        </Button>
+      </Flex>
       <Table columns={tableColumn} dataSource={listData} />
     </div>
   );
